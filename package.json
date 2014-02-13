@@ -1,0 +1,10 @@
+{
+	"name": "very-array",
+	"version": "0.0.1",
+	"description": "Very Array",
+	"main": "very-array.js",
+	"author": {
+		"name": "nescalante",
+		"email": "nlante@gmail.com"
+	}
+}
