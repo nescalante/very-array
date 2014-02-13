@@ -36,7 +36,7 @@
 			}
 
 			return totalSum;
-		};
+		}
 
 		function _select(selector) {
 			var array = [];
@@ -46,7 +46,7 @@
 			}
 
 			return new Query(array);
-		};
+		}
 
 		function _selectMany(selector) {
 			var array = [];
@@ -61,7 +61,7 @@
 			}
 
 			return new Query(array);
-		};
+		}
 
 		function _contains(item) {
 			for (var i = 0; i < self.length; i++) {
@@ -71,7 +71,7 @@
 			}
 
 			return false;
-		};
+		}
 
 		 function _all(expression) {
 			var success = true;
@@ -81,7 +81,7 @@
 			}
 
 			return success;
-		};
+		}
 
 		function _any(expression) {
 			if (expression === undefined) {
@@ -95,7 +95,7 @@
 			}
 
 			return false;
-		};
+		}
 
 		function _where(expression) {
 			var array = [];
@@ -107,7 +107,7 @@
 			}
 
 			return new Query(array);
-		};
+		}
 
 		function _first(expression) {
 			if (expression == null) {
@@ -117,7 +117,7 @@
 			var result = self.where(expression);
 
 			return result.length > 0 ? result[0] : null;
-		};
+		}
 
 		function _last(expression) {
 			if (expression == null) {
@@ -127,32 +127,32 @@
 			var result = self.where(expression);
 
 			return result.length > 0 ? result[result.length - 1] : null;
-		};
+		}
 
 		function _distinct() {
-			var array = [];
+			var array = new Query([]);
 
 			if (self.any() && self.all(function (i) { return i == null; })) {
 				return [null];
 			}
 
 			for (var i = 0; i < self.length; i++) {
-				var item = array.first(function (n) { return bchz.util.equal(n, self[i]); });
+				var item = array.first(function (n) { return _equal(n, self[i]); });
 				if (item === null) {
 					array.push(self[i]);
 				}
 			}
 
-			return new Query(array);
-		};
+			return array;
+		}
 
 		function _groupBy(selector) {
-			var array = [];
+			var array = new Query([]);
 
 			for (var i = 0; i < self.length; i++) {
-				var item = array.first(function (n) { return bchz.util.equal(n.key, selector(self[i])); });
+				var item = array.first(function (n) { return _equal(n.key, selector(self[i])); });
 				if (item === null) {
-					item = [];
+					item = new Query([]);
 					item.key = selector(self[i]);
 					array.push(item);
 				}
@@ -160,8 +160,8 @@
 				item.push(self[i]);
 			}
 
-			return new Query(array);
-		};
+			return array;
+		}
 
 		function _getType(selector) {
 			if (self.length == 0) return "undefined";
@@ -175,10 +175,10 @@
 			}
 
 			return "undefined";
-		};
+		}
 
 		function _orderBy(selector) {
-			if (self.length == 0) return [];
+			if (self.length == 0) return new Query([]);
 
 			var type = _getType(selector),
 				result;
@@ -205,10 +205,10 @@
 			}
 
 			return new Query(result);
-		};
+		}
 
 		function _orderByDescending(selector) {
-			if (self.length == 0) return [];
+			if (self.length == 0) return new Query([]);
 
 			var type = _getType(selector),
 				result;
@@ -235,7 +235,7 @@
 			}
 
 			return new Query(result);
-		};
+		}
 
 		function _each(action) {
 			for (var i = 0; i < self.length; i++) {
@@ -243,7 +243,43 @@
 			}
 
 			return self;
-		};
+		}
+
+		function _equal (c, x) {
+			// date compare
+			if (c instanceof Date && x instanceof Date) {
+				return c.getTime() == x.getTime();
+			}
+
+			if (c instanceof Date != x instanceof Date) {
+				return false;
+			}
+
+			// type compare
+			if (typeof c !== typeof x) {
+				return false;
+			}
+
+			// number or string compare
+			if (typeof c === "number" || typeof c === "string") {
+				return c === x;
+			}
+
+			// both undefined
+			if (typeof c === "undefined") {
+				return true;
+			}
+
+			// object properties compare
+			for (var key in c) {
+				if (c[key] !== x[key]) {
+					return false;
+				}
+			}
+
+			// all seems to be right
+			return true;
+		}
 	}
 
 	Query.prototype = clone(Array.prototype);

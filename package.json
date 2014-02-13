@@ -1,7 +1,7 @@
 {
 	"name": "very-array",
-	"version": "0.0.1",
-	"description": "Very Array",
+	"version": "0.0.3",
+	"description": "Array queries with callbacks",
 	"main": "very-array.js",
 	"author": {
 		"name": "nescalante",
