@@ -1,7 +1,7 @@
 # Install
 
 ```shell
-npm install --save ponyedit
+npm install very-array --save
 ```
 
 # Usage:
