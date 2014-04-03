@@ -7,6 +7,8 @@ npm install very-array --save
 # Usage:
 
 ```shell
+var va = require('va');
+
 va([1,2,3]).where(function (i) { return i > 1; }); // [2, 3]
 ```
 
