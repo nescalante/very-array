@@ -33,5 +33,5 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('default', ['lint']);
     grunt.registerTask('build', ['lint', 'uglify']);
-    grunt.registerTask('deploy', ['build', 'shell:npm-publish', 'shell:heroku-push']);
+    grunt.registerTask('deploy', ['build', 'shell:npm-publish', 'shell:bower-register']);
 };
