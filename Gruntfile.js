@@ -7,7 +7,8 @@ module.exports = function (grunt) {
             options: {
                 reporter: require('jshint-stylish')
             },
-            src: ['<%= pkg.main %>']
+            src: ['<%= pkg.main %>'],
+            test: ['test/*.js']
         },
         uglify: {
             src: {

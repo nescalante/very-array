@@ -14,3 +14,12 @@ describe('where()', function () {
     }
   });
 });
+
+describe('sum()', function () {
+  it('should filter elements', function () {
+    var result = va([{ a: 1 }, { a: 2 }, { a: 3 }])
+      .sum(function (i) { return i.a; });
+
+    assert.equal(result, 6);
+  });
+});
