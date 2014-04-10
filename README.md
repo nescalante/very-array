@@ -1,4 +1,4 @@
-# Very Array [![Build Status](https://travis-ci.org/nescalante/very-array.png?branch=master)](https://travis-ci.org/nescalante/very-array)
+# Very Array [![Build Status](https://travis-ci.org/nescalante/very-array.svg?branch=master)](https://travis-ci.org/nescalante/very-array)
 
 # Install
 
