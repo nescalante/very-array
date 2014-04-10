@@ -1,6 +1,3 @@
-# Very Array
-### Array helper LINQ style
-
 [![Build Status](https://travis-ci.org/nescalante/very-array.png?branch=master)](https://travis-ci.org/nescalante/very-array)
 
 # Install
