@@ -30,6 +30,8 @@
     self.groupBy = _groupBy;
     self.orderBy = _orderBy;
     self.orderByDescending = _orderByDescending;
+    self.each = _each;
+    self.toArray = _toArray;
 
     function _sum(selector) {
       var totalSum = 0;
@@ -149,7 +151,7 @@
       return array;
 
       function compareItem(i) { 
-        return function(n) { _equal(n, self[i]); };
+        return function(n) { return _equal(n, self[i]); };
       }
     }
 
@@ -250,10 +252,29 @@
 
     function _each(action) {
       for (var i = 0; i < self.length; i++) {
-        action.bind(self[i], i, self[i])();
+        action.bind(self[i], self[i], i)();
       }
 
       return self;
+    }
+
+    function _toArray() {
+      return converyArray(self);
+
+      function converyArray(array) {
+        var result = [];
+
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] instanceof Query) {
+            result.push(converyArray(array[i]));
+          }
+          else {
+            result.push(array[i]);
+          }
+        }
+
+        return result;
+      }
     }
 
     function _equal (c, x) {
@@ -282,8 +303,15 @@
       }
 
       // object properties compare
-      for (var key in c) {
-        if (c[key] !== x[key]) {
+      for (var key1 in c) {
+        if (c[key1] !== x[key1]) {
+          return false;
+        }
+      }
+
+      // check the other object too
+      for (var key2 in x) {
+        if (c[key2] !== x[key2]) {
           return false;
         }
       }
