@@ -2,11 +2,15 @@
 
 ```shell
 npm install very-array --save
+
+bower install very-array
 ```
 
 # Usage:
 
 ```shell
+var va = require('very-array'); // only for server side
+
 va([1,2,3]).where(function (i) { return i > 1; }); // [2, 3]
 ```
 
