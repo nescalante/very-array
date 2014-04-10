@@ -1,10 +1,34 @@
 {
-	"name": "very-array",
-	"version": "0.0.3",
-	"description": "Array queries with callbacks",
-	"main": "very-array.js",
-	"author": {
-		"name": "nescalante",
-		"email": "nlante@gmail.com"
-	}
+  "name": "very-array",
+  "version": "0.1.0",
+  "description": "Array queries LINQ style",
+  "main": "src/very-array.js",
+  "author": {
+    "name": "nescalante",
+    "email": "nlante@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nescalante/very-array.git"
+  },
+  "keyworks": [
+    "array",
+    "group",
+    "sort",
+    "filter",
+    "orderby",
+    "linq"
+  ],
+  "scripts": {
+    "test": "mocha --reporter tap && jshint --reporter node_modules/jshint-tap/jshint-tap.js test/*.js"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-shell": "~0.6.4",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.4.0",
+    "mocha": "~1.18.2"
+  }
 }

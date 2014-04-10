@@ -1,0 +1,16 @@
+{
+  "name": "very-array",
+  "version": "0.1.0",
+  "homepage": "https://github.com/nescalante/very-array",
+  "authors": [
+    "Nicolas Escalante <nlante@gmail.com>"
+  ],
+  "description": "Array queries LINQ style",
+  "license": "MIT",
+  "ignore": [
+    "node_modules"
+  ],
+  "main": "src/very-array.js",
+  "dependencies": {
+  }
+}
