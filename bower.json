@@ -8,7 +8,10 @@
   "description": "Array queries LINQ style",
   "license": "MIT",
   "ignore": [
-    "node_modules"
+    "node_modules",
+    "test",
+    "Gruntfile.js",
+    ".travis.yml"
   ],
   "main": "src/very-array.js",
   "dependencies": {
