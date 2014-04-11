@@ -30,6 +30,7 @@
     "jshint-stylish": "~0.1.5",
     "load-grunt-tasks": "~0.4.0",
     "mocha": "~1.18.2",
-    "assert": "~1.1.1"
+    "assert": "~1.1.1",
+    "grunt-mocha-test": "~0.10.0"
   }
 }

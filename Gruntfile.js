@@ -10,6 +10,11 @@ module.exports = function (grunt) {
             src: ['<%= pkg.main %>'],
             test: ['test/*.js']
         },
+        mochaTest: {
+            test: {
+                src: ['test/*.js']
+            }
+        },
         uglify: {
             src: {
                 files: {
@@ -32,7 +37,8 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('lint', ['jshint']);
-    grunt.registerTask('default', ['lint']);
-    grunt.registerTask('build', ['lint', 'uglify']);
+    grunt.registerTask('test', ['mochaTest']);
+    grunt.registerTask('default', ['lint', 'test']);
+    grunt.registerTask('build', ['lint', 'mocha', 'uglify']);
     grunt.registerTask('deploy', ['build', 'shell:npm-publish', 'shell:bower-register']);
 };
