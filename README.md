@@ -114,5 +114,5 @@ Functions:
 
     ```shell
     va([1, 2, 3])
-        .each(function (index, item) { console.log(item) }); // 1, 2, 3
+        .each(function (item, index) { console.log(item) }); // 1, 2, 3
     ```
