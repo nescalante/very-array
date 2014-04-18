@@ -39,6 +39,6 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('test', ['mochaTest']);
     grunt.registerTask('default', ['lint', 'test']);
-    grunt.registerTask('build', ['lint', 'mocha', 'uglify']);
+    grunt.registerTask('build', ['lint', 'test', 'uglify']);
     grunt.registerTask('deploy', ['build', 'shell:npm-publish', 'shell:bower-register']);
 };
