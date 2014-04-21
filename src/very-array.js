@@ -324,6 +324,16 @@
   Query.prototype = clone(Array.prototype);
   q = function () { return construct(Query, arguments); };
 
+  // alternative way
+  q(['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'each', 'toArray']).each(function (name) {
+    q[name] = function (array) { 
+      var args = Array.prototype.slice
+        .call(arguments)
+        .slice(1);
+
+      return q(array)[name].apply(this, args); };
+  });
+
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = q;
   }
