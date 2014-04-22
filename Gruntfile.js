@@ -5,7 +5,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
             options: {
-                reporter: require('jshint-stylish')
+                reporter: require('jshint-stylish'),
+                jshintrc: true
             },
             src: ['<%= pkg.main %>'],
             test: ['test/*.js']

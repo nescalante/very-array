@@ -30,17 +30,21 @@
     self.groupBy = _groupBy;
     self.orderBy = _orderBy;
     self.orderByDescending = _orderByDescending;
-    self.each = _each;
+    self.forEach = _forEach;
     self.toArray = _toArray;
 
+    function _query(type, result) {
+      return type instanceof Query ? new Query(result) : result;
+    }
+
     function _sum(selector) {
-      var totalSum = 0;
+      var sum = 0;
 
       for (var i = 0; i < self.length; i++) {
-        totalSum += selector(self[i]);
+        sum += (selector && selector(self[i])) || self[i];
       }
 
-      return totalSum;
+      return sum;
     }
 
     function _select(selector) {
@@ -50,7 +54,7 @@
         array.push(selector(self[i]));
       }
 
-      return new Query(array);
+      return _query(this, array);
     }
 
     function _selectMany(selector) {
@@ -65,7 +69,7 @@
         }
       }
 
-      return new Query(array);
+      return _query(this, array);
     }
 
     function _contains(item) {
@@ -111,7 +115,7 @@
         }
       }
 
-      return new Query(array);
+      return _query(this, array);
     }
 
     function _first(expression) {
@@ -135,20 +139,20 @@
     }
 
     function _distinct() {
-      var array = new Query([]);
+      var query = new Query([]);
 
       if (self.any() && self.all(function (i) { return i === null || i === undefined; })) {
         return [null];
       }
 
       for (var i = 0; i < self.length; i++) {
-        var item = array.first(compareItem(i));
+        var item = query.first(compareItem(i));
         if (item === null) {
-          array.push(self[i]);
+          query.push(self[i]);
         }
       }
 
-      return array;
+      return this instanceof Query ? query : query.toArray();
 
       function compareItem(i) { 
         return function(n) { return _equal(n, self[i]); };
@@ -156,20 +160,20 @@
     }
 
     function _groupBy(selector) {
-      var array = new Query([]);
+      var query = new Query([]);
 
       for (var i = 0; i < self.length; i++) {
-        var item = array.first(compareItem(i));
+        var item = query.first(compareItem(i));
         if (item === null) {
           item = new Query([]);
           item.key = selector(self[i]);
-          array.push(item);
+          query.push(item);
         }
 
         item.push(self[i]);
       }
 
-      return array;
+      return this instanceof Query ? query : query.toArray();
 
       function compareItem(i) {
         return function (n) { return _equal(n.key, selector(self[i])); };
@@ -217,7 +221,7 @@
         result = self;
       }
 
-      return new Query(result);
+      return _query(this, result);
     }
 
     function _orderByDescending(selector) {
@@ -247,10 +251,10 @@
         result = self;
       }
 
-      return new Query(result);
+      return _query(this, result);
     }
 
-    function _each(action) {
+    function _forEach(action) {
       for (var i = 0; i < self.length; i++) {
         action.bind(self[i], self[i], i)();
       }
@@ -321,24 +325,29 @@
     }
   }
 
+  // array inheritance
   Query.prototype = clone(Array.prototype);
   q = function () { return construct(Query, arguments); };
 
-  // alternative way
-  q(['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'each', 'toArray']).each(function (name) {
-    q[name] = function (array) { 
-      var args = Array.prototype.slice
-        .call(arguments)
-        .slice(1);
-
-      return q(array)[name].apply(this, args); };
-  });
+  // prototype extension so you can va.extends(Array) or whateva
+  q.extends = extend;
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = q;
   }
   else {
     root.va = q;
+  }
+
+  function extend(obj) {
+    q(['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'forEach']).forEach(function (name) {
+      obj.prototype[name] = obj.prototype[name] || function () { 
+        var args = Array.prototype.slice
+          .call(arguments);
+
+        return q(this)[name].apply(this, args); 
+      };
+    });
   }
 
   function clone(obj) {

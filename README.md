@@ -110,9 +110,17 @@ Functions:
         .orderByDescending(function (i) { return i.a; }); // [{ a: 3 }, { a: 2 }, { a: 1 }]
     ```
     
-* each: 
+* forEach: 
 
     ```shell
     va([1, 2, 3])
-        .each(function (item, index) { console.log(item) }); // 1, 2, 3
+        .forEach(function (item, index) { console.log(item) }); // 1, 2, 3
+    ```
+
+Extension:
+
+    ```shell
+    va.extends(Array);
+
+    [1, 2, 3].sum() // 6
     ```
