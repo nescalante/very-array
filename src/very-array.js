@@ -2,6 +2,7 @@
   'use strict';
   
   var q;
+  var functions = ['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'forEach'];
 
   function Query() {
     var self = this;
@@ -340,7 +341,7 @@
   }
 
   function extend(obj) {
-    q(['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'forEach']).forEach(function (name) {
+    q(functions).forEach(function (name) {
       obj.prototype[name] = obj.prototype[name] || function () { 
         var args = Array.prototype.slice
           .call(arguments);
