@@ -119,8 +119,8 @@ Functions:
 
 Extension:
 
-    ```shell
-    va.extends(Array);
+```shell
+va.extends(Array);
 
-    [1, 2, 3].sum() // 6
-    ```
+[1, 2, 3].sum() // 6
+```
