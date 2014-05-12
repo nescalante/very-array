@@ -42,6 +42,7 @@ describe('sum()', function () {
   it('should sum some numbers', function () {
     assert.equal(va([{ a: 1 }, { a: 2 }, { a: 3 }]).sum(function (i) { return i.a; }), 6);
     assert.equal(va([1, 2]).sum(), 3);
+    assert.equal(va([0, 1, 0, 2]).sum(), 3);
   });
 });
 

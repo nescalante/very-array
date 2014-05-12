@@ -68,7 +68,12 @@
       var sum = 0;
 
       for (var i = 0; i < self.length; i++) {
-        sum += (selector && selector(self[i])) || self[i];
+        if (selector) {
+          sum += selector(self[i]);
+        }
+        else {
+          sum += self[i];
+        }
       }
 
       return sum;
