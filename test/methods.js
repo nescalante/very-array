@@ -27,12 +27,14 @@ describe('where()', function () {
 describe('skip()', function () {
   it('should skip some numbers', function () {
     assert.deepEqual(va([1, 2, 3, 4]).skip(1).toArray(), [2, 3, 4]);
+    assert.deepEqual(va([1, 2, 3]).skip(4).toArray(), []);
   });
 });
 
 describe('take()', function () {
   it('should take some numbers', function () {
     assert.deepEqual(va([1, 2, 3, 4]).take(2).toArray(), [1, 2]);
+    assert.deepEqual(va([1, 2]).take(4).toArray(), [1, 2]);
   });
 });
 

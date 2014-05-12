@@ -44,7 +44,9 @@
       var array = [];
       
       for (var i = count; i < self.length; i++) {
-        array.push(self[i]);
+        if (i < self.length) {
+          array.push(self[i]);
+        }
       }
 
       return _query(this, array);
@@ -54,7 +56,9 @@
       var array = [];
       
       for (var i = 0; i < count; i++) {
-        array.push(self[i]);
+        if (i < self.length) {
+          array.push(self[i]);
+        }
       }
 
       return _query(this, array);
