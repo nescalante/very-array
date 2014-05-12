@@ -24,6 +24,18 @@ describe('where()', function () {
   });
 });
 
+describe('skip()', function () {
+  it('should skip some numbers', function () {
+    assert.deepEqual(va([1, 2, 3, 4]).skip(1).toArray(), [2, 3, 4]);
+  });
+});
+
+describe('take()', function () {
+  it('should take some numbers', function () {
+    assert.deepEqual(va([1, 2, 3, 4]).take(2).toArray(), [1, 2]);
+  });
+});
+
 describe('sum()', function () {
   it('should sum some numbers', function () {
     assert.equal(va([{ a: 1 }, { a: 2 }, { a: 3 }]).sum(function (i) { return i.a; }), 6);
@@ -180,6 +192,8 @@ describe('extension', function () {
     assert.equal([1, 2, 3].last(), 3);
     assert.deepEqual([1, 1, 1].distinct(), [1]);
     assert.deepEqual([1, 2, 3].where(function (i) { return i < 3; }), [1, 2]);
+    assert.deepEqual([1, 2, 3].take(2), [1, 2]);
+    assert.deepEqual([1, 2, 3].skip(2), [3]);
 
     var concat = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 3 }, { a: 4 }]
       .where(function (i) { return i.a < 4; })

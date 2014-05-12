@@ -2,7 +2,7 @@
   'use strict';
   
   var q;
-  var functions = ['sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'forEach'];
+  var functions = ['skip', 'take', 'sum', 'select', 'selectMany', 'contains', 'all', 'any', 'where', 'first', 'last', 'distinct', 'groupBy', 'orderBy', 'orderByDescending', 'forEach'];
 
   function Query() {
     var self = this;
@@ -18,6 +18,8 @@
     }
 
     // assign functions;
+    self.skip = _skip;
+    self.take = _take;
     self.sum = _sum;
     self.select = _select;
     self.selectMany = _selectMany;
@@ -36,6 +38,26 @@
 
     function _query(type, result) {
       return type instanceof Query ? new Query(result) : result;
+    }
+
+    function _skip(count) {
+      var array = [];
+      
+      for (var i = count; i < self.length; i++) {
+        array.push(self[i]);
+      }
+
+      return _query(this, array);
+    }
+
+    function _take(count) {
+      var array = [];
+      
+      for (var i = 0; i < count; i++) {
+        array.push(self[i]);
+      }
+
+      return _query(this, array);
     }
 
     function _sum(selector) {

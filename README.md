@@ -19,6 +19,20 @@ va([1,2,3]).where(function (i) { return i > 1; }); // [2, 3]
 ```
 
 Functions:
+* skip: 
+
+    ```shell
+    va([1, 2, 3])
+        .skip(1); // [2, 3]
+    ```
+
+* take: 
+
+    ```shell
+    va([1, 2, 3])
+        .take(2); // [1, 2]
+    ```
+
 * sum: 
 
     ```shell
