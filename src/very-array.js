@@ -227,7 +227,7 @@
     }
 
     function _orderBy(selector) {
-      if (self.length === 0) return new Query([]);
+      if (self.length === 0) return _query(this, []);
 
       var type = _getType(selector),
         result;
@@ -257,7 +257,7 @@
     }
 
     function _orderByDescending(selector) {
-      if (self.length === 0) return new Query([]);
+      if (self.length === 0) return _query(this, []);
 
       var type = _getType(selector),
         result;
