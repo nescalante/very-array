@@ -179,6 +179,7 @@
 
       for (var i = 0; i < self.length; i++) {
         var item = query.first(compareItem(i));
+
         if (item === null) {
           query.push(self[i]);
         }
@@ -196,6 +197,7 @@
 
       for (var i = 0; i < self.length; i++) {
         var item = query.first(compareItem(i));
+        
         if (item === null) {
           item = new Query([]);
           item.key = selector(self[i]);
@@ -229,8 +231,8 @@
     function _orderBy(selector) {
       if (self.length === 0) return _query(this, []);
 
-      var type = _getType(selector),
-        result;
+      var type = _getType(selector);
+      var result;
 
       if (type == 'number') {
         result = self.sort(function (a, b) { 
@@ -251,8 +253,8 @@
       }
       else if (type == 'string') {
         result = self.sort(function (a, b) {
-          var x = selector(a) || '',
-            y = selector(b) || '';
+          var x = selector(a) || '';
+          var y = selector(b) || '';
 
           return x < y ? -1 : (x > y ? 1 : 0);
         });
@@ -268,8 +270,8 @@
       }
 
       // well, I want it [undefined, null, -Infinity, -1 ...]
-      if (_query(this, result).any(function (i) { return i !== undefined; })) {
-        while (result[result.length - 1] === undefined) {
+      if (_query(this, result).any(function (i) { return selector(i) !== undefined; })) {
+        while (selector(result[result.length - 1]) === undefined) {
           result.unshift(result.pop());
         }
       }
@@ -280,8 +282,8 @@
     function _orderByDescending(selector) {
       if (self.length === 0) return _query(this, []);
 
-      var type = _getType(selector),
-        result;
+      var type = _getType(selector);
+      var result;
 
       if (type == 'number') {
         result = self.sort(function (a, b) { 
@@ -302,8 +304,8 @@
       }
       else if (type == 'string') {
         result = self.sort(function (b, a) {
-          var x = selector(a) || '',
-            y = selector(b) || '';
+          var x = selector(a) || '';
+          var y = selector(b) || '';
 
           return x < y ? -1 : (x > y ? 1 : 0);
         });
