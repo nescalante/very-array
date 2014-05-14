@@ -1,4 +1,4 @@
-(function (root) {
+(function (root, undefined) {
   'use strict';
   
   var q;
@@ -233,7 +233,21 @@
         result;
 
       if (type == 'number') {
-        result = self.sort(function (a, b) { return selector(a) - selector(b); });
+        result = self.sort(function (a, b) { 
+          if (selector(a) === selector(b)) {
+            return 0;
+          }
+
+          if (selector(a) === null) {
+            return -1;
+          }
+
+          if (selector(b) === null) {
+            return 1;
+          }
+
+          return selector(a) - selector(b); 
+        });
       }
       else if (type == 'string') {
         result = self.sort(function (a, b) {
@@ -253,6 +267,13 @@
         result = self;
       }
 
+      // well, I want it [undefined, null, -Infinity, -1 ...]
+      if (_query(this, result).any(function (i) { return i !== undefined; })) {
+        while (result[result.length - 1] === undefined) {
+          result.unshift(result.pop());
+        }
+      }
+
       return _query(this, result);
     }
 
@@ -263,7 +284,21 @@
         result;
 
       if (type == 'number') {
-        result = self.sort(function (b, a) { return selector(a) - selector(b); });
+        result = self.sort(function (a, b) { 
+          if (selector(a) === selector(b)) {
+            return 0;
+          }
+
+          if (selector(a) === null) {
+            return 1;
+          }
+
+          if (selector(b) === null) {
+            return -1;
+          }
+
+          return selector(b) - selector(a); 
+        });
       }
       else if (type == 'string') {
         result = self.sort(function (b, a) {

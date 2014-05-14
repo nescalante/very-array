@@ -141,6 +141,13 @@ describe('orderBy()', function () {
 
     assert.deepEqual(numbers, [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }]);
     assert.deepEqual(letters, [{ a: "a" }, { a: "x" }, { a: "y" }, { a: "z" }]);
+
+    var nullArray = va([1, 2, null, undefined, 0, -1, -Infinity, Infinity])
+      .orderBy(function (i) { return i; })
+      .toArray();
+
+    assert.deepEqual(nullArray, [undefined, null, -Infinity, -1, 0, 1, 2, Infinity]);
+    assert.deepEqual(va([undefined, undefined]).orderBy(function (i) { return i; }).toArray(), [undefined, undefined]);
   });
 });
 
@@ -156,6 +163,12 @@ describe('orderByDescending()', function () {
 
     assert.deepEqual(numbers, [{ a: 4 }, { a: 3 }, { a: 2 }, { a: 1 }]);
     assert.deepEqual(letters, [{ a: "z" }, { a: "y" }, { a: "x" }, { a: "a" }]);
+
+    var nullArray = va([1, 2, null, undefined, 0])
+      .orderByDescending(function (i) { return i; })
+      .toArray();
+
+    assert.deepEqual(nullArray, [2, 1, 0, null, undefined]);
   });
 });
 
