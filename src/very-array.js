@@ -197,7 +197,7 @@
 
       for (var i = 0; i < self.length; i++) {
         var item = query.first(compareItem(i));
-        
+
         if (item === null) {
           item = new Query([]);
           item.key = selector(self[i]);
@@ -270,13 +270,18 @@
       }
 
       // well, I want it [undefined, null, -Infinity, -1 ...]
-      if (_query(this, result).any(function (i) { return selector(i) !== undefined; })) {
-        while (selector(result[result.length - 1]) === undefined) {
-          result.unshift(result.pop());
+      if (result.any(function (i) { return selector(i) === undefined; })) {
+        var defined = result.where(function (i) { return selector(i) !== undefined; });
+        var empty = result.where(function (i) { return selector(i) === undefined; });
+
+        for (var i = 0; i < empty.length; i++) {
+          defined.unshift(empty[i]);
         }
+
+        result = defined;
       }
 
-      return _query(this, result);
+      return result;
     }
 
     function _orderByDescending(selector) {
@@ -320,7 +325,18 @@
         result = self;
       }
 
-      return _query(this, result);
+      if (result.any(function (i) { return selector(i) === undefined; })) {
+        var defined = result.where(function (i) { return selector(i) !== undefined; });
+        var empty = result.where(function (i) { return selector(i) === undefined; });
+
+        for (var i = 0; i < empty.length; i++) {
+          defined.push(empty[i]);
+        }
+
+        result = defined;
+      }
+
+      return result;
     }
 
     function _forEach(action) {
