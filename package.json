@@ -20,7 +20,7 @@
     "linq"
   ],
   "scripts": {
-    "test": "mocha --ui tdd"
+    "test": "mocha"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -34,17 +34,55 @@
     "assert": "~1.1.1"
   },
   "testling": {
-    "harness": "mocha-tdd",
-    "files": "test/*.js",
-    "browsers": [
-      "ie/6..latest",
-      "chrome/22..latest",
-      "firefox/16..latest",
-      "safari/latest",
-      "opera/11.0..latest",
-      "iphone/6",
-      "ipad/6",
-      "android-browser/latest"
-    ]
+    "harness": "mocha",
+    "files": [
+      "src/very-array.js",
+      "test/*.js"
+    ],
+    "browsers": {
+      "chrome": [
+        5,
+        15,
+        20,
+        25,
+        30,
+        "canary"
+      ],
+      "firefox": [
+        3.6,
+        10,
+        15,
+        20,
+        25,
+        "nightly"
+      ],
+      "opera": [
+        15,
+        16,
+        17,
+        "next"
+      ],
+      "safari": [
+        4,
+        5.1,
+        6
+      ],
+      "ie": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "iphone": [
+        6
+      ],
+      "ipad": [
+        6
+      ],
+      "android-browser": [
+        4.2
+      ]
+    }
   }
 }
