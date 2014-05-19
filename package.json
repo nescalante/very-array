@@ -34,6 +34,7 @@
     "assert": "~1.1.1"
   },
   "testling": {
+    "harness": "mocha-tdd",
     "files": "test/*.js",
     "browsers": [
       "ie/6..latest",
