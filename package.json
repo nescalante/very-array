@@ -20,7 +20,7 @@
     "linq"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --ui tdd"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
