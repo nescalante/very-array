@@ -1,6 +1,6 @@
 {
   "name": "very-array",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Array queries LINQ style",
   "main": "src/very-array.js",
   "author": {
@@ -31,7 +31,8 @@
     "jshint-stylish": "~0.1.5",
     "load-grunt-tasks": "~0.4.0",
     "mocha": "~1.18.2",
-    "assert": "~1.1.1"
+    "assert": "~1.1.1",
+    "grunt-contrib-copy": "~0.5.0"
   },
   "testling": {
     "harness": "mocha",

@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         uglify: {
             src: {
                 files: {
-                    'src/<%= pkg.name %>.min.js': ['<%= pkg.main %>']
+                    'dist/<%= pkg.name %>.min.js': ['<%= pkg.main %>']
                 }
             }
         },
@@ -32,6 +32,12 @@ module.exports = function (grunt) {
                 options: { stdout: true },
                 command: 'bower register <%= pkg.name %> <%= pkg.repository.url %>'
             }
+        },
+        copy: {
+            src: {
+                src: 'src/very-array.js',
+                dest: 'dist/very-array.js'
+            }
         }
     });
 
@@ -40,6 +46,6 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('test', ['mochaTest']);
     grunt.registerTask('default', ['lint', 'test']);
-    grunt.registerTask('build', ['lint', 'test', 'uglify']);
+    grunt.registerTask('build', ['lint', 'test', 'copy', 'uglify']);
     grunt.registerTask('deploy', ['build', 'shell:npm-publish', 'shell:bower-register']);
 };
