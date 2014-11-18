@@ -1,6 +1,7 @@
 ![Such array library](https://raw.github.com/nescalante/very-array/master/resources/such-dog.jpg)
 
 # Very Array [![Build Status](https://travis-ci.org/nescalante/very-array.svg?branch=master)](https://travis-ci.org/nescalante/very-array)
+*Such funcional array helper*
 
 # Install
 
@@ -10,130 +11,122 @@ npm install very-array --save
 bower install very-array
 ```
 
-# Usage:
-
-```shell
-var va = require('very-array'); // only for server side
-
-va([1,2,3]).where(function (i) { return i > 1; }); // [2, 3]
-```
-
-Functions:
+Many functions:
 * skip: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .skip(1); // [2, 3]
     ```
 
 * take: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .take(2); // [1, 2]
     ```
 
 * sum: 
 
-    ```shell
+    ```js
     va([{ a: 1 }, { a: 2 }, { a: 3 }])
         .sum(function (i) { return i.a; }); // 6
     ```
     
 * select: 
  
-    ```shell
+    ```js
     va([{ a: 1 }, { a: 2 }, { a: 3 }])
         .select(function (i) { return i.a; }) // [1, 2, 3]
     ```
 
 * selectMany: 
 
-    ```shell
+    ```js
     va([{ a: [1, 2] }, { a: [3] }, { a: [4, 5, 6] }])
         .selectMany(function (i) { return i.a; }) // [1, 2, 3, 4, 5, 6]
     ```
     
 * contains: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .contains(1); // true
     ```
     
 * all: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .all(function (i) { return i > 0; }); // true
     ```
     
 * any: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .any(function (i) { return i > 2; }); // true
     ```
     
 * where: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .where(function (i) { return i > 2; }); // [3]
     ```
     
 * first: 
     
-    ```shell
+    ```js
     va([1, 2, 3])
         .first(function (i) { return i > 1; }); // [2]
     ```
 
 * last: 
  
-    ```shell
+    ```js
     va([1, 2, 3])
         .last(); // 3
     ```
 
 * distinct: 
  
-    ```shell
+    ```js
     va([1, 1, 2, 3, 3])
         .distinct(); // [1, 2, 3]
     ```
 
 * groupBy: 
  
-    ```shell
+    ```js
     va([{ a: 1 }, { a: 1 }, { a: 2 }, { a: 3 }])
         .groupBy(function (i) { return i.a; }); //Array[2], Array[1], Array[1]
     ```
 
 * orderBy: 
 
-    ```shell
+    ```js
     va([{ a: 2 }, { a: 1 }, { a: 3 }])
         .orderBy(function (i) { return i.a; }); // [{ a: 1 }, { a: 2 }, { a: 3 }]
     ```
     
 * orderByDescending: 
 
-    ```shell
+    ```js
     va([{ a: 1 }, { a: 2 }, { a: 3 }])
         .orderByDescending(function (i) { return i.a; }); // [{ a: 3 }, { a: 2 }, { a: 1 }]
     ```
     
 * forEach: 
 
-    ```shell
+    ```js
     va([1, 2, 3])
         .forEach(function (item, index) { console.log(item) }); // 1, 2, 3
     ```
 
-Extension:
+Such prototype extension:
 
-```shell
+```js
 va.extends(Array);
 
 [1, 2, 3].sum() // 6
