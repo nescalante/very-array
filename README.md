@@ -10,15 +10,7 @@ npm install very-array --save
 bower install very-array
 ```
 
-# Usage:
-
-```js
-var va = require('very-array'); // only for server side
-
-va([1,2,3]).where(function (i) { return i > 1; }); // [2, 3]
-```
-
-Functions:
+Many functions:
 * skip: 
 
     ```js
@@ -131,7 +123,7 @@ Functions:
         .forEach(function (item, index) { console.log(item) }); // 1, 2, 3
     ```
 
-Extension:
+Such prototype extension:
 
 ```js
 va.extends(Array);
