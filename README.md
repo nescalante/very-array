@@ -1,6 +1,7 @@
 ![Such array library](https://raw.github.com/nescalante/very-array/master/resources/such-dog.jpg)
 
 # Very Array [![Build Status](https://travis-ci.org/nescalante/very-array.svg?branch=master)](https://travis-ci.org/nescalante/very-array)
+*Such funcional array helper*
 
 # Install
 
