@@ -28,6 +28,7 @@ describe('skip()', function () {
   it('should skip some numbers', function () {
     assert.deepEqual(va([1, 2, 3, 4]).skip(1).toArray(), [2, 3, 4]);
     assert.deepEqual(va([1, 2, 3]).skip(4).toArray(), []);
+    assert.deepEqual(va([1, 2]).skip(-2).toArray(), [1, 2]);
   });
 });
 

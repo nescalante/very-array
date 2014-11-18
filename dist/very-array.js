@@ -43,6 +43,10 @@
     function _skip(count) {
       var array = [];
       
+      if (count < 0) {
+        count = 0;
+      }
+
       for (var i = count; i < self.length; i++) {
         if (i < self.length) {
           array.push(self[i]);

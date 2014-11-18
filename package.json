@@ -1,10 +1,10 @@
 {
   "name": "very-array",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "Array queries LINQ style",
   "main": "src/very-array.js",
   "author": {
-    "name": "nescalante",
+    "name": "Nicolás Escalante",
     "email": "nlante@gmail.com"
   },
   "repository": {
