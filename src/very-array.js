@@ -376,7 +376,8 @@
 
       function convertJSON(array) {
         var result = {};
-
+        result.length = array.length;
+        
         if (array.key !== undefined) {
           result.key = array.key;
         }
