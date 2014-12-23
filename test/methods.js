@@ -196,6 +196,15 @@ describe('concatenation', function () {
   });
 });
 
+describe('toJSON()', function () {
+  it('should convert to JSON when stringify', function () {
+    var result = va([{ a: 1 }, { a: 1 }, { a: 2 }])
+      .groupBy(function (i) { return i.a; });
+
+    assert.equal(JSON.stringify(result), '{"0":{"0":{"a":1},"1":{"a":1},"key":1},"1":{"0":{"a":2},"key":2}}');
+  });
+});
+
 describe('extension', function () {
   it('should extend Array element', function () {
     va.extends(Array);

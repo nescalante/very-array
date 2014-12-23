@@ -1,6 +1,6 @@
 {
   "name": "very-array",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Array queries LINQ style",
   "main": "src/very-array.js",
   "author": {

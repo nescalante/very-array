@@ -35,6 +35,7 @@
     self.orderByDescending = _orderByDescending;
     self.forEach = _forEach;
     self.toArray = _toArray;
+    self.toJSON = _toJSON;
 
     function _query(type, result) {
       return type instanceof Query ? new Query(result) : result;
@@ -370,6 +371,29 @@
       }
     }
 
+    function _toJSON() {
+      return convertJSON(self);
+
+      function convertJSON(array) {
+        var result = {};
+
+        if (array.key !== undefined) {
+          result.key = array.key;
+        }
+
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] instanceof Query) {
+            result[i] = convertJSON(array[i]);
+          }
+          else {
+            result[i] = array[i];
+          }
+        }
+
+        return result;
+      }
+    }
+
     function _equal (c, x) {
       // date compare
       if (c instanceof Date && x instanceof Date) {
@@ -418,7 +442,7 @@
   Query.prototype = clone(Array.prototype);
   q = function () { return construct(Query, arguments); };
 
-  // prototype extension so you can va.extends(Array) or whateva
+  // prototype extension so you can va.extends(Array) or whatever
   q.extends = extend;
 
   if (typeof module !== 'undefined' && module.exports) {
