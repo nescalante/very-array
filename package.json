@@ -23,16 +23,16 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-mocha-test": "~0.10.0",
-    "grunt-shell": "~0.6.4",
-    "jshint-stylish": "~0.1.5",
-    "load-grunt-tasks": "~0.4.0",
-    "mocha": "~1.18.2",
-    "assert": "~1.1.1",
-    "grunt-contrib-copy": "~0.5.0"
+    "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-uglify": "~2.2.1",
+    "grunt-mocha-test": "~0.13.2",
+    "grunt-shell": "~2.1.0",
+    "jshint-stylish": "~2.2.1",
+    "load-grunt-tasks": "~3.5.2",
+    "mocha": "~3.2.0",
+    "assert": "~1.4.1",
+    "grunt-contrib-copy": "~1.0.0"
   },
   "testling": {
     "harness": "mocha",
