@@ -30,7 +30,7 @@
     "grunt-shell": "~2.1.0",
     "jshint-stylish": "~2.2.1",
     "load-grunt-tasks": "~3.5.2",
-    "mocha": "~3.4.1",
+    "mocha": "~3.5.0",
     "assert": "~1.4.1",
     "grunt-contrib-copy": "~1.0.0"
   },
